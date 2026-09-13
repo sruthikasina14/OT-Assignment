@@ -1,0 +1,103 @@
+TRANSPORTATION PROBLEM
+
+Cost Matrix:
+[[ 9.  8. 11.  7.]
+ [ 9. 14.  4.  4.]
+ [ 5. 17.  6. 19.]]
+
+Supply: [20, 30, 25]
+Demand: [10, 25, 20, 20]
+
+VOGEL'S APPROXIMATION METHOD
+
+Step 1
+Row Penalties: [np.float64(1.0), np.float64(0.0), np.float64(1.0)]
+Column Penalties: [np.float64(4.0), np.float64(6.0), np.float64(2.0), np.float64(3.0)]
+Allocation: F1 -> W2 = 20
+
+Step 2
+Row Penalties: [-1, np.float64(0.0), np.float64(1.0)]
+Column Penalties: [np.float64(4.0), np.float64(3.0), np.float64(2.0), np.float64(15.0)]
+Allocation: F2 -> W4 = 20
+
+Step 3
+Row Penalties: [-1, np.float64(5.0), np.float64(1.0)]
+Column Penalties: [np.float64(4.0), np.float64(3.0), np.float64(2.0), -1]
+Allocation: F2 -> W3 = 10
+
+Step 4
+Row Penalties: [-1, -1, np.float64(1.0)]
+Column Penalties: [np.float64(5.0), np.float64(17.0), np.float64(6.0), -1]
+Allocation: F3 -> W2 = 5
+
+Step 5
+Row Penalties: [-1, -1, np.float64(1.0)]
+Column Penalties: [np.float64(5.0), -1, np.float64(6.0), -1]
+Allocation: F3 -> W3 = 10
+
+Step 6
+Row Penalties: [-1, -1, np.float64(5.0)]
+Column Penalties: [np.float64(5.0), -1, -1, -1]
+Allocation: F3 -> W1 = 10
+
+
+VAM INITIAL BASIC FEASIBLE SOLUTION
+       W1   W2   W3   W4
+F1      0    20    0    0
+F2      0    0    10    20
+F3      10    5    10    0
+
+Initial Transportation Cost = Rs. 475
+
+
+MODIFIED DISTRIBUTION METHOD (MODI)
+
+Step 1
+u values: [0, np.float64(7.0), np.float64(9.0)]
+v values: [np.float64(-4.0), np.float64(8.0), np.float64(-3.0), np.float64(-3.0)]
+
+Delta (Opportunity Cost) Table:
+       W1   W2   W3   W4
+F1      13    0    14    10
+F2      6    -1    0    0
+F3      0    0    0    13
+
+Entering Cell: F2-W2
+
+Closed Loop:
++ F2-W2
+- F2-W3
++ F3-W3
+- F3-W2
+
+Theta = 5
+
+Allocation after Step 1 :
+       W1   W2   W3   W4
+F1      0    20    0    0
+F2      0    5    5    20
+F3      10    0    15    0
+
+Transportation Cost = Rs. 470
+
+Step 2
+u values: [0, np.float64(6.0), np.float64(8.0)]
+v values: [np.float64(-3.0), np.float64(8.0), np.float64(-2.0), np.float64(-2.0)]
+
+Delta (Opportunity Cost) Table:
+       W1   W2   W3   W4
+F1      12    0    13    9
+F2      6    0    0    0
+F3      0    1    0    13
+
+All Delta values are >= 0.
+Therefore, the solution is OPTIMAL.
+
+
+FINAL OPTIMAL ALLOCATION
+       W1   W2   W3   W4
+F1      0    20    0    0
+F2      0    5    5    20
+F3      10    0    15    0
+
+Minimum Transportation Cost = Rs. 470
